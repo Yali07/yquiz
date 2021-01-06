@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'y2*7yfa=%s%94n)-t4ycw&38=5yump9m2%(($c%l(d5=*x2ar7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yquizz.herokuapp.com']
 
 
 # Application definition
