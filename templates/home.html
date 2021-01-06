@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <header>
+        <div class="container header">
+            <h1>Y Quiz</h1>
+            {% if user.is_superuser %}
+              <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Create Quiz</button>
+            {% endif %}
+        </div>
+    </header>
+    
+    
+    {% for titles in title%}
+        <div class="container">
+            <div class="card title-card mt-5 mb-5">
+                <div style="display: flex;" class="card-body">
+                    <h3 style="flex: 9;" class="card-title">{{titles}}</h3>
+                    <a style="flex:1;" href="{% url 'quiz' titles.slug %}" class="start-btn btn btn-md btn-info">Start</a> 
+                </div>
+                
+            </div>
+        </div>
+    {% endfor %}
+    
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Quiz</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="POST">
+            {% csrf_token %}
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input name="title" type="text" class="form-control" id="title" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

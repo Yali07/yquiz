@@ -1,0 +1,297 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css\style.css' %}">
+       
+</head>
+<body style="color: black;">
+    {% block content %}
+
+    {% endblock %}
+    <script >
+var total = 0
+var q1 = document.getElementById('q1')
+var q2 = document.getElementById('q2')
+var q3 = document.getElementById('q3')
+var q4 = document.getElementById('q4')
+var q5 = document.getElementById('q5')
+var q6 = document.getElementById('q6')
+var q7 = document.getElementById('q7')
+var q8 = document.getElementById('q8')
+var q9 = document.getElementById('q9')
+var q10 = document.getElementById('q10')
+var finalResult=document.getElementById('finalResult')
+var finalResultDisplay=document.getElementById('final-result-display')
+var result = document.getElementById('result')
+
+var totalTime = 0
+var minute = document.getElementById('min')
+var seconds = document.getElementById('sec')
+var startBtn = document.querySelectorAll('.start-btn')
+
+
+setInterval(setTime,1000)
+
+function setTime(){
+    ++totalTime ;
+    seconds.innerHTML = time(totalTime%60);
+    minute.innerHTML = time(parseInt(totalTime/60));
+}
+
+function time(val){
+    var valString = val + ""
+    if (valString.length < 2){
+        return "0"+valString;
+    } else{
+        return valString;
+    }
+}
+
+var q1_next_btn = document.getElementById('q1-btn')
+q1_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q1.style.display==='block'){
+        q1.style.display='none'
+        q2.style.display='block'
+    }
+
+})
+var q2_next_btn = document.getElementById('q2-btn')
+q2_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q2.style.display==='block'){
+        q2.style.display ='none'
+        q3.style.display ='block'
+        console.log("Success");
+    }
+})
+var q3_next_btn = document.getElementById('q3-btn')
+q3_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q3.style.display==='block'){
+        q3.style.display ='none'
+        q4.style.display ='block'
+        console.log("Success");
+    }
+})
+var q4_next_btn = document.getElementById('q4-btn')
+q4_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q4.style.display==='block'){
+        q4.style.display ='none'
+        q5.style.display ='block'
+        console.log("Success");
+    }
+})
+var q5_next_btn = document.getElementById('q5-btn')
+q5_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q5.style.display==='block'){
+        q5.style.display ='none'
+        q6.style.display ='block'
+    }
+})
+var q6_next_btn = document.getElementById('q6-btn')
+q6_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q6.style.display==='block'){
+        q6.style.display ='none'
+        q7.style.display ='block'
+        console.log("Success");
+    }
+})
+var q7_next_btn = document.getElementById('q7-btn')
+q7_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q7.style.display==='block'){
+        q7.style.display ='none'
+        q8.style.display ='block'
+        console.log("Success");
+    }
+})
+var q8_next_btn = document.getElementById('q8-btn')
+q8_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q8.style.display==='block'){
+        q8.style.display ='none'
+        q9.style.display ='block'
+        console.log("Success");
+    }
+})
+var q9_next_btn = document.getElementById('q9-btn')
+q9_next_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q9.style.display==='block'){
+        q9.style.display ='none'
+        q10.style.display ='block'
+        console.log("Success");
+    }
+})
+var q10_submit_btn = document.getElementById('q10-btn')
+q10_submit_btn.addEventListener('click',function(){
+    result.innerHTML=""
+    if(q10.style.display==='block'){
+        q10.style.display ='none'
+        finalResultDisplay.style.display ='block'
+        correctAnswer = total
+        wrongAnswer = 10-correctAnswer
+        if (correctAnswer>=5){
+            finalResult.innerHTML = "<h4>Score : " + total+ "/10</h4>"+"<h5>Result : <strong style='color:green'>Pass</strong></h5>" +"<h5 style='color:green'>Correct Answers: "+ correctAnswer + "</h5><h5 style='color:red'>Wrong Answers: " + wrongAnswer + "</h5><p><strong>Time taken: </strong>"+ time(parseInt(totalTime/60))+ ":" +time(totalTime%60) +"</p>"
+        } else {
+            finalResult.innerHTML = "<h4>Score : " + total+ "/10</h4>"+"<h5>Result : <strong style='color:red'>Fail</strong></h5>" +"<h5 style='color:green'>Correct Answers: "+ correctAnswer + "</h5><h5 style='color:red'>Wrong Answers: " + wrongAnswer + "</h5><p><strong>Time taken: </strong>"+ time(parseInt(totalTime/60))+ ":" +time(totalTime%60) +"</p>"
+        }
+
+
+    }
+})
+
+const q1Value = document.querySelectorAll('.q1Value');
+function q1SelectItem(e){
+    
+    if (e.target.value == '{{q1.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q1.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q1.answer}} </h5><p>Explanation: {{q1.explanation}}</p>"
+    }
+    q1_next_btn.disabled =false
+}
+q1Value.forEach(item => item.addEventListener('click',q1SelectItem))
+
+const q2Value = document.querySelectorAll('.q2Value');
+function q2SelectItem(e){
+    
+    if (e.target.value == '{{q2.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q2.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q2.answer}} </h5><p>Explanation: {{q2.explanation}}</p>"
+    }
+    q2_next_btn.disabled =false
+}
+q2Value.forEach(item => item.addEventListener('click',q2SelectItem))
+
+const q3Value = document.querySelectorAll('.q3Value');
+function q3SelectItem(e){
+    
+    console.log(e.target.value)
+    if (e.target.value == '{{q3.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q3.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q3.answer}} </h5><p>Explanation: {{q3.explanation}}</p>"
+    }
+    q3_next_btn.disabled =false
+}
+q3Value.forEach(item => item.addEventListener('click',q3SelectItem))
+
+const q4Value = document.querySelectorAll('.q4Value');
+function q4SelectItem(e){
+    
+    console.log(e.target.value)
+    if (e.target.value == '{{q4.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q4.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q4.answer}} </h5><p>Explanation: {{q4.explanation}}</p>"
+    }
+    q4_next_btn.disabled =false
+}
+q4Value.forEach(item => item.addEventListener('click',q4SelectItem))
+
+const q5Value = document.querySelectorAll('.q5Value');
+function q5SelectItem(e){
+    
+    if (e.target.value == '{{q5.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q5.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q5.answer}} </h5><p>Explanation: {{q5.explanation}}</p>"
+    }
+    q5_next_btn.disabled =false
+}
+q5Value.forEach(item => item.addEventListener('click',q5SelectItem))
+
+const q6Value = document.querySelectorAll('.q6Value');
+function q6SelectItem(e){
+    
+    if (e.target.value == '{{q6.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q6.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q6.answer}} </h5><p>Explanation: {{q6.explanation}}</p>"
+    }
+    q6_next_btn.disabled =false
+}
+q6Value.forEach(item => item.addEventListener('click',q6SelectItem))
+
+const q7Value = document.querySelectorAll('.q7Value');
+function q7SelectItem(e){
+    
+    if (e.target.value == '{{q7.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q7.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q7.answer}} </h5><p>Explanation: {{q7.explanation}}</p>"
+    }
+    q7_next_btn.disabled =false
+}
+q7Value.forEach(item => item.addEventListener('click',q7SelectItem))
+
+const q8Value = document.querySelectorAll('.q8Value');
+function q8SelectItem(e){
+    
+    if (e.target.value == '{{q8.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q8.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q8.answer}} </h5><p>Explanation: {{q8.explanation}}</p>"
+    }
+    q8_next_btn.disabled =false
+}
+q8Value.forEach(item => item.addEventListener('click',q8SelectItem))
+
+const q9Value = document.querySelectorAll('.q9Value');
+function q9SelectItem(e){
+    
+    if (e.target.value == '{{q9.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q9.explanation}}</p>"
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q9.answer}} </h5><p>Explanation: {{q9.explanation}}</p>"
+    }
+    q9_next_btn.disabled =false
+}
+q9Value.forEach(item => item.addEventListener('click',q9SelectItem))
+
+const q10Value = document.querySelectorAll('.q10Value');
+function q10SelectItem(e){
+    
+    if (e.target.value == '{{q10.answer}}'){
+        total++
+        result.innerHTML = "<h5 style='color: green'>Correct</h5><p>Explanation: {{q10.explanation}}</p>"
+        
+
+    }else{
+        result.innerHTML = "<h5 style='color: red'>Wrong</h5><h5 style='color: green'>Correct Answer : {{q10.answer}} </h5><p>Explanation: {{q10.explanation}}</p>"
+    }
+    q10_submit_btn.disabled =false
+}
+q10Value.forEach(item => item.addEventListener('click',q10SelectItem))
+
+
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+</body>
+</html>
+
