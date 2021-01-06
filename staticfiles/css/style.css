@@ -1,0 +1,117 @@
+header{
+    background-color: Khaki;
+    padding: 20px;
+    
+}
+.header{
+    display: flex;
+}
+.header h1{
+    flex: 9;
+}
+.header button{
+    flex:1;
+    background-color: black;
+}
+.header button:hover{
+    background:transparent;
+    color: black;
+    border-color: black;
+}
+.title-card{
+    width: 60%;
+    margin: auto;
+    background-color: black;
+    color: Khaki;
+    padding: 20px;
+    box-shadow: 10px 5px 5px red;
+}
+.start-btn{
+    background-color: black;
+    color: khaki;
+    font-weight: bold;
+    border-color: khaki;
+}
+.start-btn:hover{
+    background-color: khaki;
+    color: black;
+    font-weight: bold;
+}
+.clr{
+    clear: both;
+}
+.q-container{
+    width: 70%;
+    margin: 0 auto;
+}
+.options{
+    padding: 10px;
+    font-size: 1.6rem;
+}
+.card-body{
+    width: 80%;
+    margin: 0 auto;
+}
+.next-btn{
+    float: right;
+}
+@media only screen and (max-width: 600px){
+    .header h1{
+        flex: 8;
+    }
+    .header button{
+        flex:2;
+    }
+    .title-card{
+        width: 100%;
+    }
+    .q-container{
+        width: 100%;
+    }
+    .options{
+        font-size: 1rem;
+    }
+    .card-body{
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 600px){
+    .header h1{
+        flex: 8;
+    }
+    .header button{
+        flex:2;
+    }
+    .title-card{
+        width: 95%;
+    }
+    .q-container{
+        width: 95%;
+    }
+    .options{
+        font-size: 1rem;
+    }
+    .card-body{
+        width: 95%;
+    }
+}
+@media only screen and (min-width: 900px){
+    .header h1{
+        flex: 8;
+    }
+    .header button{
+        flex:2;
+    }
+    .title-card{
+        width: 60%;
+    }
+    .q-container{
+        width: 90%;
+    }
+    .options{
+        font-size: 1.3rem;
+    }
+    .card-body{
+        width: 90%;
+    }
+}
